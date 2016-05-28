@@ -15,11 +15,17 @@ Liste des fenetres
 -fen1: Fenetre de première connexion - Création de l'entreprise (fenetre terminée)
 
 -fen2: Fenetre de première connexion - Création de l'utilisateur (fenetre terminée)
+
 -fen3: Fenetre de première connexion - Résumé de la configuration (fenetre terminée)
+
 -fen4: Tableau de bord (fenetre terminée)
+
 -fen5: Paramètres (fenetre terminée)
+
 -fen6: Gestion des Clients( a faire)
+
 -fen7: Gestion du Stock( a faire)
+
 -fen8: Gestion des Ventes( a faire)
 
 
