@@ -1,11 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class StockW extends JFrame {
@@ -22,12 +23,27 @@ public class StockW extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel main, top, center, left;
 	private JButton btnleft1, btnleft2, btnleft3, btnleft4, home;
-	private JLabel title, welcome, piclabel, searchtitle, addtitle, listtitle;
+	private JLabel title, welcome, piclabel;
 	private String titlewindow = "Gestion du stock";
 	private String labels[] = { "Stock", "Clients", "Ventes", "ParamÃ¨tres" };
 	
-	//Composants propres au panel
-
+	
+	//propre au stock
+	private JTextField rechercher;
+	private JButton ok,annuler;
+	private JLabel nomArt;
+	
+	
+	//Propre a l'article
+	
+	private JLabel nomA,ref;
+	private JTextField quantite,prixV,prixA;
+	private JButton supprimer,annulerModif,enregistrer;
+	
+	
+	
+	// constructeur 
+	
 	public StockW(String t) {
 		this.setTitle(t);
 		this.setSize(1000, 600);
@@ -98,22 +114,76 @@ public class StockW extends JFrame {
 
 		// Panel central
 		center = new JPanel();
-		listtitle = new JLabel("Liste des articles");
-		addtitle = new JLabel("Ajout un article");
-		searchtitle = new JLabel("Rechercher un article");
-		
 
-		center.setLayout(new GridLayout(3, 1, 10, 10));
+		center.setLayout(new GridLayout(3, 1 , 10, 10));
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
-		center.add(searchtitle);
-		center.add(addtitle);
-		center.add(listtitle);
-
+		
+		this.nomArt = new JLabel("Nom Article");
+		this.rechercher = new JTextField();
+		this.annuler= new JButton("Annuler");
+		this.ok=new JButton("Rechercher");
+		this.ok.addActionListener(new NextScreen() );
+		center.add(nomArt);
+		center.add(rechercher);
+		center.add(ok);
+		center.add(annuler);	
+		
+		
 		// Ajout des panel au panel principal
 		main.add(top, BorderLayout.NORTH);
 		main.add(left, BorderLayout.WEST);
 		main.add(center, BorderLayout.CENTER);
 
+	}
+	
+	public void construireArticle(){
+		JPanel nvArticle = new JPanel();
+		
+		this.nomA = new JLabel();
+		this.ref=new JLabel();
+		this.quantite = new JTextField();
+		this.prixA = new JTextField();
+		this.prixV= new JTextField();
+		
+		if (!Stock.existeArticleNom(rechercher.getText())){
+			this.ref.setText(Integer.toString(Stock.mesArticle.size()));
+			this.quantite.setText("Quantité : ");
+			this.prixA.setText("Prix d'achat");
+			this.prixV.setText("Prix de vente");
+		}else{
+			this.nomA.setText(rechercher.getText());
+			this.ref.setText(Integer.toString(Stock.trouverArticleNom(rechercher.getText()).getReference()));
+			this.quantite.setText("Quantité : " + Integer.toString(Stock.trouverArticleNom(rechercher.getText()).getQuantite()));
+			this.prixA.setText("Prix d'achat" + Float.toString(Stock.trouverArticleNom(rechercher.getText()).getPrixA()));
+			this.prixV.setText("Prix de vente" + Float.toString(Stock.trouverArticleNom(rechercher.getText()).getPrixV()));
+		}
+		center.removeAll();
+		center.setLayout(new FlowLayout());
+		
+		nvArticle.setLayout(new BoxLayout(nvArticle,BoxLayout.Y_AXIS));
+		nvArticle.add(nomA);
+		nvArticle.add(Box.createVerticalBox());
+		nvArticle.add(ref);
+		nvArticle.add(Box.createVerticalBox());
+		nvArticle.add(quantite);
+		nvArticle.add(Box.createVerticalBox());
+		nvArticle.add(prixA);
+		nvArticle.add(Box.createVerticalBox());
+		nvArticle.add(prixV);
+		
+		JPanel actionBouton = new JPanel();
+		actionBouton.setLayout(new GridLayout(3,1));
+		this.supprimer = new JButton("Supprimer Article");
+		this.enregistrer = new JButton("Enregistrer modification");
+		this.annulerModif = new JButton("Annuler les modification");
+		
+		actionBouton.add(supprimer);
+		actionBouton.add(enregistrer);
+		actionBouton.add(annulerModif);
+		
+		center.add(nvArticle);
+		center.add(actionBouton);
+		
 	}
 
 	public class OpenParametres implements ActionListener {
@@ -151,4 +221,10 @@ public class StockW extends JFrame {
 			Logiciel.Show(Logiciel.getFen4());
 		}
 	}
+	public class NextScreen implements ActionListener {
+		public void actionPerformed(ActionEvent ei){
+			construireArticle();
+		}
+	}
+	
 }
