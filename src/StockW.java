@@ -28,13 +28,13 @@ public class StockW extends JFrame {
 	private String titlewindow = "Gestion du stock";
 	private String labels[] = { "Stock", "Clients", "Ventes", "Paramètres" };
 	
-<<<<<<< HEAD
+
 	//Composants propres au panel
 	private JLabel  searchtitle, addtitle, listtitle;
 	private JButton addarticle;
 	private JList listearticle;
 	private JTextField search;
-=======
+
 	
 	//propre au stock
 	private JTextField rechercher;
@@ -51,7 +51,7 @@ public class StockW extends JFrame {
 	
 	
 	// constructeur 
->>>>>>> origin/master
+
 	
 	public StockW(String t) {
 		this.setTitle(t);
@@ -123,19 +123,18 @@ public class StockW extends JFrame {
 
 		// Panel central
 		center = new JPanel();
-<<<<<<< HEAD
+
 		listtitle = new JLabel("Liste des articles");
 		addtitle = new JLabel("Ajout un article");
 		searchtitle = new JLabel("Rechercher un article");
 		search = new JTextField("Entrez un nom ou une référence");
 		addarticle = new JButton("Créer un article");
 		listearticle = new JList();
-=======
->>>>>>> origin/master
+
 
 		center.setLayout(new GridLayout(3, 1 , 10, 10));
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
-<<<<<<< HEAD
+
 		center.add(searchtitle);
 		center.add(addtitle);
 		center.add(listtitle);
@@ -143,7 +142,7 @@ public class StockW extends JFrame {
 		center.add(addarticle);
 		center.add(listearticle);
 
-=======
+
 		
 		this.nomArt = new JLabel("Nom Article");
 		this.rechercher = new JTextField();
@@ -156,7 +155,7 @@ public class StockW extends JFrame {
 		center.add(annuler);	
 		
 		
->>>>>>> origin/master
+
 		// Ajout des panel au panel principal
 		main.add(top, BorderLayout.NORTH);
 		main.add(left, BorderLayout.WEST);
@@ -175,13 +174,13 @@ public class StockW extends JFrame {
 		
 		if (!Stock.existeArticleNom(rechercher.getText())){
 			this.ref.setText(Integer.toString(Stock.mesArticle.size()));
-			this.quantite.setText("Quantit� : ");
+			this.quantite.setText("Quantit� : ");
 			this.prixA.setText("Prix d'achat");
 			this.prixV.setText("Prix de vente");
 		}else{
 			this.nomA.setText(rechercher.getText());
 			this.ref.setText(Integer.toString(Stock.trouverArticleNom(rechercher.getText()).getReference()));
-			this.quantite.setText("Quantit� : " + Integer.toString(Stock.trouverArticleNom(rechercher.getText()).getQuantite()));
+			this.quantite.setText("Quantit� : " + Integer.toString(Stock.trouverArticleNom(rechercher.getText()).getQuantite()));
 			this.prixA.setText("Prix d'achat" + Float.toString(Stock.trouverArticleNom(rechercher.getText()).getPrixA()));
 			this.prixV.setText("Prix de vente" + Float.toString(Stock.trouverArticleNom(rechercher.getText()).getPrixV()));
 		}
