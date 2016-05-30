@@ -1,3 +1,10 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Stock {
@@ -41,21 +48,13 @@ public class Stock {
 
 	// ajouter un article
 	// TODO dÃ©pendance avec la classe saisr
-	// static public void ajouterArticle(Article a){
-	// if (!existeArticle(a)){
-	// ajoutArticle(a);
-	// }else{
-	// System.out.println("le Stock contient deja cette article combien voulez
-	// vous en rajouter");
-	// try {
-	// a.ajouterQuantiteStock(Saisir.entier());
-	// } catch (IOException e){
-	// System.out.println("Vous devez entrer un Nombre svp !!! c'est pas
-	// compliquer");
-	// ajouterArticle(a);
-	// }
-	// }
-	// }
+	 static public void ajouterArticle(Article a){
+		 if (!existeArticle(a)){
+		 ajoutArticle(a);
+		 }else{
+		 System.out.println("le Stock contient deja cette article combien voulez vous en rajouter");
+		 }
+	 }
 
 	// enlever un article
 
@@ -191,7 +190,28 @@ public class Stock {
 		}
 		return x;
 	}
+	
+	static public void ouvrirFichier() throws FileNotFoundException, IOException, ClassNotFoundException{
+		File fichierArticle = new File("article.txt");
 
+		ObjectInputStream ouverture = new ObjectInputStream(new FileInputStream(fichierArticle)); // attention, tu peux avoir des erreurs s'il ne trouve pas le fichier,
+	 //donc fais attention au nom que tu lui donne et le chemin aussi, si tu vas dans 
+	 // d'autres dossier. 
+		@SuppressWarnings("unchecked")
+		ArrayList<Article> tabFichier= (ArrayList<Article>) ouverture.readObject(); // On est obligé de caster ce qu'il retourne
+		Stock.mesArticle=tabFichier;	// 	Je sais pas pourquoi mais c'est comme ça ;)
+		ouverture.close();
+	}
+
+	
+	static public void enregistrer() throws FileNotFoundException, IOException, ClassNotFoundException{
+		
+		File fichierArticle = new File("article.txt");
+		ObjectOutputStream enregistreArticle = new ObjectOutputStream(new FileOutputStream(fichierArticle));
+		ArrayList<Article> tabFichier = Stock.mesArticle;
+		enregistreArticle.writeObject(tabFichier);
+		enregistreArticle.close();
+	}
 	public class Erreur extends Exception {
 		/**
 		 *

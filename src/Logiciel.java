@@ -1,6 +1,8 @@
 import java.awt.Image;
 import java.awt.Window;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -216,10 +218,25 @@ public class Logiciel {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
 		// //Lors d'une première connexion
 		//
-		Logiciel.Show(fen1);
+		Article ps4=new Article("ps4","Console",10,270,300);
+		Article xbox=new Article("xbox","Console",18,350,400);
+		Article pomme=new Article("pomme","fruit",124,3,7);
+		Article ordinateur=new Article("ordinateur","ordinateur",5,750,1000);
+		Article iphone=new Article("iphone","telephone",50,600,620);
+		
+		
+
+		Stock.ajouterArticle(ps4);
+		Stock.ajouterArticle(xbox);
+		Stock.ajouterArticle(pomme);
+		Stock.ajouterArticle(ordinateur);
+		Stock.ajouterArticle(iphone);
+		Stock.enregistrer();
+		Stock.ouvrirFichier();
+		Logiciel.Show(fen7);
 		//
 		// // Pour le test du tableau de bord
 		//
