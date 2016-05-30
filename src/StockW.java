@@ -22,9 +22,11 @@ public class StockW extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel main, top, center, left;
 	private JButton btnleft1, btnleft2, btnleft3, btnleft4, home;
-	private JLabel title, welcome, piclabel;
+	private JLabel title, welcome, piclabel, searchtitle, addtitle, listtitle;
 	private String titlewindow = "Gestion du stock";
 	private String labels[] = { "Stock", "Clients", "Ventes", "Paramètres" };
+	
+	//Composants propres au panel
 
 	public StockW(String t) {
 		this.setTitle(t);
@@ -96,9 +98,16 @@ public class StockW extends JFrame {
 
 		// Panel central
 		center = new JPanel();
+		listtitle = new JLabel("Liste des articles");
+		addtitle = new JLabel("Ajout un article");
+		searchtitle = new JLabel("Rechercher un article");
+		
 
-		center.setLayout(new GridLayout(2, 2, 10, 10));
+		center.setLayout(new GridLayout(3, 1, 10, 10));
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
+		center.add(searchtitle);
+		center.add(addtitle);
+		center.add(listtitle);
 
 		// Ajout des panel au panel principal
 		main.add(top, BorderLayout.NORTH);
