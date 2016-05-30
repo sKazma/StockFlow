@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -36,7 +37,12 @@ public class StockW extends JFrame {
 	private JLabel searchtitle;
 	private JTextField tfsearch;
 	private JTable listeArticles;
-
+	private String[] entete = { "Référence", "Désignation", "Quantité en stock", "Prix d'achat", "Prix de vente"};
+	private String[] [] donnees = {{"00001", "Playstation", "3", "30", "40"},
+			{"00001", "Playstation", "3", "30", "40"},
+			{"00001", "Playstation", "3", "30", "40"},
+			{"00001", "Playstation", "3", "30", "40"},
+								};
 	// constructeur
 
 	public StockW(String t) {
@@ -121,7 +127,7 @@ public class StockW extends JFrame {
 		modify.setEnabled(false);
 		remove.setEnabled(false);
 		search = new JButton ("Rechercher");
-		listeArticles = new JTable();
+		listeArticles = new JTable(donnees, entete);
 		
 		//Première ligne de "center"
 		line1.add(add);
@@ -134,7 +140,7 @@ public class StockW extends JFrame {
 		line2.add(search);
 		
 		//troisième ligne de "center"
-		line3.add(listeArticles);
+		line3.add(new JScrollPane(listeArticles));
 		
 		center.setLayout(new GridLayout(3, 1, 10, 10));
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
