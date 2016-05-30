@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -130,7 +131,7 @@ public class VentesW extends JFrame {
 		line2.add(search);
 
 		// troisième ligne de "center"
-		line3.add(listeVentes);
+		line3.add(new JScrollPane(listeVentes));
 
 		center.setLayout(new GridLayout(3, 1, 10, 10));
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
