@@ -216,7 +216,7 @@ public class Logiciel {
 		}
 	}
 	
-	public
+//test
 	public static void main(String[] args) {
 		// //Lors d'une première connexion
 		//
