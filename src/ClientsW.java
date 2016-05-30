@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -34,6 +35,17 @@ public class ClientsW extends JFrame {
 	private JLabel searchtitle;
 	private JTextField tfsearch;
 	private JTable listeClients;
+	private String[] entete = { "Référence", "Nom", "Prénom", "Ville", "Adresse", "Téléphone" };
+	private String[] [] donnees = {{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"},
+								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"},
+								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"},
+								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"},
+								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"},
+								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"},
+								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"},
+								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"}
+								};
+
 
 	public ClientsW(String t) {
 		this.setTitle(t);
@@ -116,7 +128,7 @@ public class ClientsW extends JFrame {
 		modify.setEnabled(false);
 		remove.setEnabled(false);
 		search = new JButton("Rechercher");
-		listeClients = new JTable();
+		listeClients = new JTable(donnees, entete);
 
 		// Première ligne de "center"
 		line1.add(add);
@@ -129,7 +141,7 @@ public class ClientsW extends JFrame {
 		line2.add(search);
 
 		// troisième ligne de "center"
-		line3.add(listeClients);
+		line3.add(new JScrollPane(listeClients));
 
 		center.setLayout(new GridLayout(3, 1, 10, 10));
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
