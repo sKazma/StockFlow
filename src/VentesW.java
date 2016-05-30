@@ -13,8 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 
 public class VentesW extends JFrame {
 	/**
@@ -26,6 +27,13 @@ public class VentesW extends JFrame {
 	private JLabel title, welcome, piclabel;
 	private String titlewindow = "Gestion des ventes";
 	private String labels[] = { "Stock", "Clients", "Ventes", "Paramètres" };
+
+	// composants propres au menu principal
+	private JPanel line1, line2, line3;
+	private JButton add, modify, search, remove;
+	private JLabel searchtitle;
+	private JTextField tfsearch;
+	private JTable listeVentes;
 
 	public VentesW(String t) {
 		this.setTitle(t);
@@ -97,9 +105,38 @@ public class VentesW extends JFrame {
 
 		// Panel central
 		center = new JPanel();
+		line1 = new JPanel();
+		line2 = new JPanel();
+		line3 = new JPanel();
 
-		center.setLayout(new GridLayout(2, 2, 10, 10));
+		searchtitle = new JLabel("Rechercher un article : ");
+		tfsearch = new JTextField("Entrez un nom ou une référence");
+		add = new JButton("Créer un article...");
+		remove = new JButton("Supprimer...");
+		modify = new JButton("Modifer...");
+		modify.setEnabled(false);
+		remove.setEnabled(false);
+		search = new JButton("Rechercher");
+		listeVentes = new JTable();
+		
+		// Première ligne de "center"
+		line1.add(add);
+		line1.add(modify);
+		line1.add(remove);
+
+		// Deuxième ligne de "center"
+		line2.add(searchtitle);
+		line2.add(tfsearch);
+		line2.add(search);
+
+		// troisième ligne de "center"
+		line3.add(listeVentes);
+
+		center.setLayout(new GridLayout(3, 1, 10, 10));
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
+		center.add(line1);
+		center.add(line2);
+		center.add(line3);
 
 		// Ajout des panel au panel principal
 		main.add(top, BorderLayout.NORTH);
