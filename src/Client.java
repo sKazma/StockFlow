@@ -10,12 +10,13 @@ public class Client {
 	private String tel;
 	private String civilite;
 	private int maReference;
-	static private int ref;
+	static private int ref = 0;
 	private ArrayList<Vente1> mesAchat = new ArrayList<Vente1>();
 
 	// ------------------- CONSTRUCTEUR n1 --------------------------- //
 
-	public Client(String nom, String prenom, String adresse, String tel, String civilite) throws IOException {
+	public Client(String nom, String prenom, String adresse, String tel, String civilite){
+	
 		Client.ref++;
 		this.maReference = ref;
 		this.nom = nom;

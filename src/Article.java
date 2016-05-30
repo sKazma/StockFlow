@@ -12,14 +12,12 @@ public class Article implements Serializable {
 	private int quantite;
 	private float prixV, prixA;
 
-	public Article(String nom, String type, int quantite, float prixA, float prixV) throws IOException {
+	public Article(String nom, int quantite, float prixA, float prixV) throws IOException {
 		super();
 		this.nom = nom;
 		ref = Stock.mesArticle.size();
 		Article.ref++;
 		this.maReference = ref;
-
-		this.type = type;
 		this.quantite = quantite;
 		this.prixA = prixA;
 		this.prixV = prixV;
@@ -40,14 +38,6 @@ public class Article implements Serializable {
 
 	public void setReference(int reference) {
 		this.maReference = reference;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public int getQuantite() {
