@@ -218,10 +218,16 @@ public class Logiciel {
 		}
 	}
 
+
 	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+
+	
+//test
+
 		// //Lors d'une première connexion
 		//
 		Stock.ouvrirFichier();
+
 		Logiciel.Show(fen7);
 		//
 		// // Pour le test du tableau de bord
