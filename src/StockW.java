@@ -12,7 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class StockW extends JFrame {
@@ -22,12 +24,16 @@ public class StockW extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel main, top, center, left;
 	private JButton btnleft1, btnleft2, btnleft3, btnleft4, home;
-	private JLabel title, welcome, piclabel, searchtitle, addtitle, listtitle;
+	private JLabel title, welcome, piclabel;
 	private String titlewindow = "Gestion du stock";
 	private String labels[] = { "Stock", "Clients", "Ventes", "Paramètres" };
 	
 	//Composants propres au panel
-
+	private JLabel  searchtitle, addtitle, listtitle;
+	private JButton addarticle;
+	private JList listearticle;
+	private JTextField search;
+	
 	public StockW(String t) {
 		this.setTitle(t);
 		this.setSize(1000, 600);
