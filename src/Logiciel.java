@@ -221,20 +221,13 @@ public class Logiciel {
 	
 
 
-	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
 
-	
-//test
-<<<<<<< HEAD
+		//Stock.ouvrirFichier();
 
-		Stock.ouvrirFichier();
-
->>>>>>> refs/remotes/origin/Ousmane
-=======
 	public static void main(String[] args) {
 		// //Lors d'une première connexion
 		//
->>>>>>> origin/master
+
 		Logiciel.Show(fen7);
 		//
 		// // Pour le test du tableau de bord
