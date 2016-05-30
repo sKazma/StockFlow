@@ -213,7 +213,7 @@ public class StockW extends JFrame {
 		public void actionPerformed(ActionEvent ei) {
 			Logiciel.Show(Logiciel.getFen8());
 		}
-
+//comentaire
 	}
 
 	public class BackHome implements ActionListener {
