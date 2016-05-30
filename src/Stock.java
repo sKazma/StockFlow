@@ -48,20 +48,20 @@ public class Stock {
 	}
 
 	//ajouter un article
-
-	static public void ajouterArticle(Article a){
-		if (!existeArticle(a)){
-			ajoutArticle(a);
-		}else{
-			System.out.println("le Stock contient deja cette article combien voulez vous en rajouter");
-			try {
-				a.ajouterQuantiteStock(Saisir.entier());
-			} catch (IOException e){
-				System.out.println("Vous devez entrer un Nombre svp !!! c'est pas compliquer");
-				ajouterArticle(a);
-			}
-		}
-	}
+//TODO dépendance avec la classe saisr
+//	static public void ajouterArticle(Article a){
+//		if (!existeArticle(a)){
+//			ajoutArticle(a);
+//		}else{
+//			System.out.println("le Stock contient deja cette article combien voulez vous en rajouter");
+//			try {
+//				a.ajouterQuantiteStock(Saisir.entier());
+//			} catch (IOException e){
+//				System.out.println("Vous devez entrer un Nombre svp !!! c'est pas compliquer");
+//				ajouterArticle(a);
+//			}
+//		}
+//	}
 
 
 	// enlever un article
