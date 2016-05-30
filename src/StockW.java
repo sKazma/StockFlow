@@ -31,6 +31,7 @@ public class StockW extends JFrame {
 	private String titlewindow = "Gestion du stock";
 	private String labels[] = { "Stock", "Clients", "Ventes", "Paramètres" };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	// composants propres au menu principal
 	private JPanel line1, line2, line3;
@@ -47,6 +48,8 @@ public class StockW extends JFrame {
 	// constructeur
 
 =======
+=======
+>>>>>>> origin/master
 	
 
 	//Composants propres au panel
@@ -145,6 +148,7 @@ public class StockW extends JFrame {
 		// Panel central
 		center = new JPanel();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		line1 = new JPanel();
 		line2 = new JPanel();
 		line3 = new JPanel();
@@ -174,6 +178,8 @@ public class StockW extends JFrame {
 		
 		center.setLayout(new GridLayout(3, 1, 10, 10));
 =======
+=======
+>>>>>>> origin/master
 
 		listtitle = new JLabel("Liste des articles");
 		addtitle = new JLabel("Ajout un article");
@@ -187,10 +193,13 @@ public class StockW extends JFrame {
 >>>>>>> refs/remotes/origin/Ousmane
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		center.add(line1);
 		center.add(line2);
 		center.add(line3);
 =======
+=======
+>>>>>>> origin/master
 
 		center.add(searchtitle);
 		center.add(addtitle);
@@ -200,7 +209,10 @@ public class StockW extends JFrame {
 		center.add(listearticle);
 
 
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/Ousmane
+=======
+>>>>>>> origin/master
 		
 <<<<<<< HEAD
 =======
@@ -215,7 +227,10 @@ public class StockW extends JFrame {
 		center.add(annuler);	
 		
 		
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/Ousmane
+=======
+>>>>>>> origin/master
 
 		// Ajout des panel au panel principal
 		main.add(top, BorderLayout.NORTH);
