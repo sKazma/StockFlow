@@ -107,13 +107,18 @@ public class StockW extends JFrame {
 		listtitle = new JLabel("Liste des articles");
 		addtitle = new JLabel("Ajout un article");
 		searchtitle = new JLabel("Rechercher un article");
-		
+		search = new JTextField("Entrez un nom ou une référence");
+		addarticle = new JButton("Créer un article");
+		listearticle = new JList();
 
 		center.setLayout(new GridLayout(3, 1, 10, 10));
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
 		center.add(searchtitle);
 		center.add(addtitle);
 		center.add(listtitle);
+		center.add(search);
+		center.add(addarticle);
+		center.add(listearticle);
 
 		// Ajout des panel au panel principal
 		main.add(top, BorderLayout.NORTH);

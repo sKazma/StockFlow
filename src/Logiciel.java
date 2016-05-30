@@ -215,7 +215,8 @@ public class Logiciel {
 
 		}
 	}
-
+	
+	public
 	public static void main(String[] args) {
 		// //Lors d'une première connexion
 		//
