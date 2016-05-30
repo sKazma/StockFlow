@@ -30,6 +30,9 @@ public class StockW extends JFrame {
 	
 	//propre au stock
 	private JTextField rechercher;
+	private JButton ok,annuler;
+	private JLabel nomArt;
+	
 	
 	//Propre a l'article
 	
