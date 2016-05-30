@@ -30,6 +30,7 @@ public class StockW extends JFrame {
 	private JLabel title, welcome, piclabel;
 	private String titlewindow = "Gestion du stock";
 	private String labels[] = { "Stock", "Clients", "Ventes", "Param√®tres" };
+<<<<<<< HEAD
 
 	// composants propres au menu principal
 	private JPanel line1, line2, line3;
@@ -45,6 +46,34 @@ public class StockW extends JFrame {
 								};
 	// constructeur
 
+=======
+	
+
+	//Composants propres au panel
+	private JLabel  searchtitle, addtitle, listtitle;
+	private JButton addarticle;
+	private JList listearticle;
+	private JTextField search;
+
+	
+	//propre au stock
+	private JTextField rechercher;
+	private JButton ok,annuler;
+	private JLabel nomArt;
+	
+	
+	//Propre a l'article
+	
+	private JLabel nomA,ref;
+	private JTextField quantite,prixV,prixA;
+	private JButton supprimer,annulerModif,enregistrer;
+	
+	
+	
+	// constructeur 
+
+	
+>>>>>>> refs/remotes/origin/Ousmane
 	public StockW(String t) {
 		this.setTitle(t);
 		this.setSize(1000, 600);
@@ -115,6 +144,7 @@ public class StockW extends JFrame {
 
 		// Panel central
 		center = new JPanel();
+<<<<<<< HEAD
 		line1 = new JPanel();
 		line2 = new JPanel();
 		line3 = new JPanel();
@@ -143,11 +173,49 @@ public class StockW extends JFrame {
 		line3.add(new JScrollPane(listeArticles));
 		
 		center.setLayout(new GridLayout(3, 1, 10, 10));
+=======
+
+		listtitle = new JLabel("Liste des articles");
+		addtitle = new JLabel("Ajout un article");
+		searchtitle = new JLabel("Rechercher un article");
+		search = new JTextField("Entrez un nom ou une rÈfÈrence");
+		addarticle = new JButton("Cr√©er un article");
+		listearticle = new JList();
+
+
+		center.setLayout(new GridLayout(3, 1 , 10, 10));
+>>>>>>> refs/remotes/origin/Ousmane
 		center.setBorder(new EmptyBorder(10, 10, 10, 10));
+<<<<<<< HEAD
 		center.add(line1);
 		center.add(line2);
 		center.add(line3);
+=======
+
+		center.add(searchtitle);
+		center.add(addtitle);
+		center.add(listtitle);
+		center.add(search);
+		center.add(addarticle);
+		center.add(listearticle);
+
+
+>>>>>>> refs/remotes/origin/Ousmane
 		
+<<<<<<< HEAD
+=======
+		this.nomArt = new JLabel("Nom Article");
+		this.rechercher = new JTextField();
+		this.annuler= new JButton("Annuler");
+		this.ok=new JButton("Rechercher");
+		this.ok.addActionListener(new NextScreen() );
+		center.add(nomArt);
+		center.add(rechercher);
+		center.add(ok);
+		center.add(annuler);	
+		
+		
+>>>>>>> refs/remotes/origin/Ousmane
 
 		// Ajout des panel au panel principal
 		main.add(top, BorderLayout.NORTH);
@@ -155,6 +223,59 @@ public class StockW extends JFrame {
 		main.add(center, BorderLayout.CENTER);
 
 	}
+<<<<<<< HEAD
+=======
+	
+	public void construireArticle(){
+		JPanel nvArticle = new JPanel();
+		
+		this.nomA = new JLabel();
+		this.ref=new JLabel();
+		this.quantite = new JTextField();
+		this.prixA = new JTextField();
+		this.prixV= new JTextField();
+		
+		if (!Stock.existeArticleNom(rechercher.getText())){
+			this.ref.setText(Integer.toString(Stock.mesArticle.size()));
+			this.quantite.setText("QuantitÔøΩ : ");
+			this.prixA.setText("Prix d'achat");
+			this.prixV.setText("Prix de vente");
+		}else{
+			this.nomA.setText(rechercher.getText());
+			this.ref.setText(Integer.toString(Stock.trouverArticleNom(rechercher.getText()).getReference()));
+			this.quantite.setText("QuantitÔøΩ : " + Integer.toString(Stock.trouverArticleNom(rechercher.getText()).getQuantite()));
+			this.prixA.setText("Prix d'achat" + Float.toString(Stock.trouverArticleNom(rechercher.getText()).getPrixA()));
+			this.prixV.setText("Prix de vente" + Float.toString(Stock.trouverArticleNom(rechercher.getText()).getPrixV()));
+		}
+		center.removeAll();
+		center.setLayout(new FlowLayout());
+		
+		nvArticle.setLayout(new BoxLayout(nvArticle,BoxLayout.Y_AXIS));
+		nvArticle.add(nomA);
+		nvArticle.add(Box.createVerticalBox());
+		nvArticle.add(ref);
+		nvArticle.add(Box.createVerticalBox());
+		nvArticle.add(quantite);
+		nvArticle.add(Box.createVerticalBox());
+		nvArticle.add(prixA);
+		nvArticle.add(Box.createVerticalBox());
+		nvArticle.add(prixV);
+		
+		JPanel actionBouton = new JPanel();
+		actionBouton.setLayout(new GridLayout(3,1));
+		this.supprimer = new JButton("Supprimer Article");
+		this.enregistrer = new JButton("Enregistrer modification");
+		this.annulerModif = new JButton("Annuler les modification");
+		
+		actionBouton.add(supprimer);
+		actionBouton.add(enregistrer);
+		actionBouton.add(annulerModif);
+		
+		center.add(nvArticle);
+		center.add(actionBouton);
+		
+	}
+>>>>>>> refs/remotes/origin/Ousmane
 
 //	public void construireArticle() {
 //		JPanel nvArticle = new JPanel();

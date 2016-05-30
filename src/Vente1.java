@@ -16,7 +16,7 @@ public class Vente1{
 		this.client=c;
 		ref++;
 		this.date = new Date(); 
-		c.ajouterVente(this);
+		Ventes.ajoutVente(this);
 		this.listeArticles =new ArrayList<Vente>();
 		total=0;
 	}

@@ -1,6 +1,8 @@
 import java.awt.Image;
 import java.awt.Window;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -215,11 +217,18 @@ public class Logiciel {
 
 		}
 	}
+
+	
+
+
+	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+
 	
 //test
-	public static void main(String[] args) {
-		// //Lors d'une première connexion
-		//
+
+		Stock.ouvrirFichier();
+
+>>>>>>> refs/remotes/origin/Ousmane
 		Logiciel.Show(fen7);
 		//
 		// // Pour le test du tableau de bord
