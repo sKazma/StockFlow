@@ -15,8 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
-
 public class ClientsW extends JFrame {
 	/**
 	 * 

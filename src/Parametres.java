@@ -243,16 +243,16 @@ public class Parametres extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// try{
 			try {
-				if (f1!=null) {
+				if (f1 != null) {
 					Logiciel.setUser(ImageIO.read(f1));
 				}
-				if (f2!=null) {
-				Logiciel.setLogo(ImageIO.read(f2));
+				if (f2 != null) {
+					Logiciel.setLogo(ImageIO.read(f2));
 				}
-				if(pic1.getIcon().equals(null)){
+				if (pic1.getIcon().equals(null)) {
 					Logiciel.setUser(null);
 				}
-				if(pic2.getIcon().equals(null)){
+				if (pic2.getIcon().equals(null)) {
 					Logiciel.setLogo(null);
 				}
 			} catch (IOException e1) {

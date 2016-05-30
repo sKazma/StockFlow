@@ -141,10 +141,7 @@ public class Intro extends JFrame {
 		bottom.add(Box.createGlue());
 		ok.addActionListener(new NextScreen());
 		cancel.addActionListener(new CloseProgram());
-		
 
-		
-		
 	}
 
 	// get Status
@@ -161,11 +158,11 @@ public class Intro extends JFrame {
 	public class SetPicture implements ActionListener {
 		public void actionPerformed(ActionEvent ei) {
 			try {
-				//Filtre du Filechooser pour ne choisir aue les images
+				// Filtre du Filechooser pour ne choisir aue les images
 
 				jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				String[] extensions = new String[] {"png","jpg","bmp","gif","jpeg"};
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Image file", extensions);                                
+				String[] extensions = new String[] { "png", "jpg", "bmp", "gif", "jpeg" };
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Image file", extensions);
 				jfc.setFileFilter(filter);
 				jfc.showOpenDialog(null);
 				File f = jfc.getSelectedFile();
@@ -190,7 +187,7 @@ public class Intro extends JFrame {
 		public void actionPerformed(ActionEvent ei) {
 			Logiciel.setCompanyname(tfname.getText());
 			Logiciel.Show(Logiciel.getFen2());
-			}
+		}
 	}
 
 	// fermer la fenetre

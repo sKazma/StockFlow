@@ -6,7 +6,7 @@ public class Vente1{
 	
 	private Client client;
 	private static int ref=0; 
-	private ArrayList<Vente> ticketCaisse;
+	private ArrayList<Vente> listeArticles;
 	private Date date;
 	private double total;
 	
@@ -17,7 +17,7 @@ public class Vente1{
 		ref++;
 		this.date = new Date(); 
 		c.ajouterVente(this);
-		this.ticketCaisse =new ArrayList<Vente>();
+		this.listeArticles =new ArrayList<Vente>();
 		total=0;
 	}
 	
@@ -50,45 +50,45 @@ public class Vente1{
 	
 	@Override
 	public String toString() {
-		return "Vente1 [client=" + client + ", ticketCaisse=" + ticketCaisse + ", date=" + date + "]";
+		return "Vente1 [client=" + client + ", listeArticles=" + listeArticles + ", date=" + date + "]";
 	}
 
 	
 	
 	//--------------------Methodes d'ajout d'articles ----------------------
 
-	public void ajoutVente() throws IOException{
+	public void ajoutVente1(String n, int q) throws IOException{
 		System.out.println("Entrez le nom de l'article , '*' POUR ARRETER");
-		String nom = Saisir.chaine();
+		String nom = n;
 		while(!nom.equals("*")){
 			System.out.println("Entrez la quantite de l'article");
-			int quantite=Saisir.entier();
+			int quantite=q;
 			if (nom!=null && quantite>0){
 				if(Stock.existeArticleNom(nom)){
 					if( Stock.verificationQuantite(nom, quantite)){
 						Vente v = new Vente(nom,quantite);
-						ticketCaisse.add(v);
+						listeArticles.add(v);
 					}
 				}else{
 					System.out.println("Cette article n'existe pas");
 				}
 			}
 			System.out.println("Entrez le nom de l'article , '*' POUR ARRETER");
-			nom = Saisir.chaine();
+			nom = n;
 		}
 	}
 	public void ajoutVente(String nom,int quantite) throws IOException{
 		if (nom!=null && quantite>0){
 			if(Stock.existeArticleNom(nom)){
 				Vente v = new Vente(nom,quantite);
-				ticketCaisse.add(v);
+				listeArticles.add(v);
 			}
 		}
 	}
 	
 	public void afficherTotal(){
-		for (int i=0;i<this.ticketCaisse.size();i++){
-			this.total=total+this.ticketCaisse.get(i).getPrixR();
+		for (int i=0;i<this.listeArticles.size();i++){
+			this.total=total+this.listeArticles.get(i).getPrixR();
 		}
 		System.out.println("Le prix total est de: "+total+" euros");
 	}
@@ -104,8 +104,8 @@ public class Vente1{
 	//-----------------Lister les article vendu ----------
 	
 	public void listerArtVendu(){
-		for(int i=0;i<ticketCaisse.size();i++){
-			System.out.println((i+1)+" "+this.ticketCaisse.get(i));
+		for(int i=0;i<listeArticles.size();i++){
+			System.out.println((i+1)+" "+this.listeArticles.get(i));
 		}
 	}
 
@@ -114,7 +114,7 @@ public class Vente1{
 //	// programme
 //	public static void main(String [] args) throws IOException{
 //		Date date = new Date();
-//		formater = new SimpleDateFormat("'le' dd/MM/yyyy 'à' HH:mm:ss");
+//		formater = new SimpleDateFormat("'le' dd/MM/yyyy 'ï¿½' HH:mm:ss");
 //		Article a1 = new Article("tomates","type",10,0.55,0,70);
 //		Article a2 = new Article("Play 4s",1111,299.99);
 //		Article a3 = new Article("Xbox  3",1112,399.99);

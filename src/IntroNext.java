@@ -167,8 +167,8 @@ public class IntroNext extends JFrame {
 		public void actionPerformed(ActionEvent ei) {
 			try {
 				jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				String[] extensions = new String[] {"png","jpg","bmp","gif","jpeg"};
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Image file", extensions);                                
+				String[] extensions = new String[] { "png", "jpg", "bmp", "gif", "jpeg" };
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Image file", extensions);
 				jfc.setFileFilter(filter);
 				jfc.showOpenDialog(null);
 				File f = jfc.getSelectedFile();
@@ -194,7 +194,7 @@ public class IntroNext extends JFrame {
 			Logiciel.setName(tfname.getText());
 			Logiciel.setSurname(tfsurname.getText());
 			Logiciel.Show(Logiciel.getFen3());
-			
+
 		}
 	}
 

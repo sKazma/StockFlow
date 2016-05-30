@@ -211,11 +211,11 @@ public class Tableaudebord extends JFrame {
 		}
 
 	}
-	public class BackHome implements ActionListener{
+
+	public class BackHome implements ActionListener {
 		public void actionPerformed(ActionEvent ei) {
 			Logiciel.Show(Logiciel.getFen4());
 		}
 	}
-	
 
 }
