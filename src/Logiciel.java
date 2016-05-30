@@ -221,20 +221,6 @@ public class Logiciel {
 	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
 		// //Lors d'une première connexion
 		//
-		Article ps4=new Article("ps4","Console",10,270,300);
-		Article xbox=new Article("xbox","Console",18,350,400);
-		Article pomme=new Article("pomme","fruit",124,3,7);
-		Article ordinateur=new Article("ordinateur","ordinateur",5,750,1000);
-		Article iphone=new Article("iphone","telephone",50,600,620);
-		
-		
-
-		Stock.ajouterArticle(ps4);
-		Stock.ajouterArticle(xbox);
-		Stock.ajouterArticle(pomme);
-		Stock.ajouterArticle(ordinateur);
-		Stock.ajouterArticle(iphone);
-		Stock.enregistrer();
 		Stock.ouvrirFichier();
 		Logiciel.Show(fen7);
 		//
