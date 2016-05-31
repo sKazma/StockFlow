@@ -10,6 +10,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -45,6 +46,13 @@ public class ClientsW extends JFrame {
 								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"},
 								{"00001", "MICHEL", "Berger", "Auray", "Centre-ville", "0297240088"}
 								};
+
+	// composants en rapport avec la JDialog
+		private JDialog newclient;
+		private JPanel central;
+		private TextPrompt gnom, gprenom, gadresse, gville, gcodepostal, gtelephone, greference;
+		private JTextField tfnom, tfprenom, tfadresse, tfville, tfcodepostal, tftelephone, tfreference;
+		private JButton valider, annuler;
 
 
 	public ClientsW(String t) {
@@ -120,9 +128,9 @@ public class ClientsW extends JFrame {
 		line2 = new JPanel();
 		line3 = new JPanel();
 
-		searchtitle = new JLabel("Rechercher un article : ");
+		searchtitle = new JLabel("Rechercher un client : ");
 		tfsearch = new JTextField("Entrez un nom ou une référence");
-		add = new JButton("Créer un article...");
+		add = new JButton("Nouveau client...");
 		remove = new JButton("Supprimer...");
 		modify = new JButton("Modifer...");
 		modify.setEnabled(false);
@@ -132,6 +140,7 @@ public class ClientsW extends JFrame {
 
 		// Première ligne de "center"
 		line1.add(add);
+		add.addActionListener(new NewClient());
 		line1.add(modify);
 		line1.add(remove);
 
@@ -156,6 +165,73 @@ public class ClientsW extends JFrame {
 
 	}
 
+	
+	//JDialog
+	
+	public void nouveauClient() {
+		newclient = new JDialog(Logiciel.getFen7(), "StockFlow - Nouveau client");
+		newclient.setSize(450, 200);
+		newclient.setLocationRelativeTo(null);
+		newclient.setContentPane(central = new JPanel());
+
+		// référence
+		tfreference = new JTextField(Article.getRef());
+		tfreference.setColumns(6);
+		greference = new TextPrompt("Référence", tfreference);
+
+		// nom
+		tfnom = new JTextField();
+		tfnom.setColumns(15);
+		gnom = new TextPrompt("Nom", tfnom);
+
+		// prenom
+		tfprenom = new JTextField();
+		tfprenom.setColumns(15);
+		gprenom = new TextPrompt("Prénom", tfprenom);
+
+		// adresse
+		tfadresse = new JTextField();
+		tfadresse.setColumns(35);
+		gadresse = new TextPrompt("Adresse", tfadresse);
+
+		// ville
+		tfville = new JTextField();
+		tfville.setColumns(15);
+		gville = new TextPrompt("Ville", tfville);
+
+		// codepostal
+		tfcodepostal = new JTextField();
+		tfcodepostal.setColumns(5);
+		gcodepostal = new TextPrompt("Code Postal", tfcodepostal);
+
+		// telephone
+		tftelephone = new JTextField();
+		tftelephone.setColumns(10);
+		gtelephone = new TextPrompt("Téléphone", tftelephone);
+
+		// Boutons
+		valider = new JButton("Enregistrer");
+		annuler = new JButton("Annuler");
+		// ajout à la fenetre
+		newclient.add(tfreference);
+		newclient.add(tfnom);
+		newclient.add(tfprenom);
+		newclient.add(tfadresse);
+		newclient.add(tfville);
+		newclient.add(tfcodepostal);
+		newclient.add(tftelephone);
+		newclient.add(valider);
+		newclient.add(annuler);
+		newclient.setVisible(true);
+	}
+	
+	// Nouveau client
+		public class NewClient implements ActionListener {
+			public void actionPerformed(ActionEvent i) {
+				nouveauClient();
+		}
+	}
+	
 	public class OpenParametres implements ActionListener {
 		public void actionPerformed(ActionEvent ei) {
 			Logiciel.Show(Logiciel.getFen5());
