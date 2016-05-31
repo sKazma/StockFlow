@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -37,7 +38,11 @@ public class StockW extends JFrame {
 	private JTextField tfsearch;
 	private JTable listeArticles;
 	private String[] entete = { "Référence", "Désignation", "Quantité en stock", "Prix d'achat", "Prix de vente"};
-	private DefaultTableModel tableModel = new DefaultTableModel(entete,0);						
+	private DefaultTableModel tableModel = new DefaultTableModel(entete,0);		
+	
+	//ajouter un artlce frame
+	//private JT;
+	
 	// constructeur
 
 	public StockW(String t) {

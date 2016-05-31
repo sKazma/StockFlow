@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class Stock {
 	static public ArrayList<Article> mesArticle = new ArrayList<Article>();
@@ -67,6 +70,46 @@ public class Stock {
 			}
 		}
 	}
+	static  List<Article> trisurNOM(){
+		List<Article> tmp= Stock.mesArticle; 
+		Collections.sort(tmp, new Comparator<Article>() {
+	@Override
+			public int compare(Article p1,  Article p2) {
+			if ( p1==null){
+			  if(p2!=null) return -1;
+		        }
+		        if (p2==null) return 1;
+			int result= p1.getNom().compareTo(p2.getNom());
+			return result;
+		 }
+		});	
+		
+		for (int i=0;i< tmp.size();i++){
+			System.out.println(tmp.get(i));
+		}
+		return tmp;
+	}
+	
+	static  List<Article> trisurRef(){
+		List<Article> tmp= Stock.mesArticle; 
+		Collections.sort(tmp, new Comparator<Article>() {
+	@Override
+			public int compare(Article p1,  Article p2) {
+			if ( p1==null){
+			  if(p2!=null) return -1;
+		        }
+		        if (p2==null) return 1;
+			int result= p1.getReference() - p2.getReference();
+			return result;
+		 }
+		});	
+		
+		for (int i=0;i< tmp.size();i++){
+			System.out.println(tmp.get(i));
+		}
+		return tmp;
+	}
+
 
 	/**
 	 * ----------algo de recherche pour remplacer le mesArticle.contains(a)
