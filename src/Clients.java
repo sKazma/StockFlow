@@ -1,14 +1,17 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Clients {
+import javax.swing.table.AbstractTableModel;
+
+public class Clients extends AbstractTableModel {
 	
 	// ------------------ VARIABLE ----------------- // 
 	
 	static ArrayList<Client> mesClients = new ArrayList<Client>();
+	private final String[] entetes = {"Nom", "PrÃ©nom", "Adresse", "Telephone", "CivilitÃ©"};
 	
 	
-		/*  -----------------------  AJOUTER (préalablement) UN CLIENT  ---------------  */
+		/*  -----------------------  AJOUTER (prï¿½alablement) UN CLIENT  ---------------  */
 		
 		static public void ajouterClient(Client c){
 			if (c!=null){
@@ -33,7 +36,7 @@ public class Clients {
 							trouve=true;
 							cl=Clients.mesClients.get(i);
 							Clients.mesClients.remove(cl);
-							System.out.println("le client a bien été effacé !");
+							System.out.println("le client a bien ï¿½tï¿½ effacï¿½ !");
 						}	
 						i++;
 					}
@@ -60,7 +63,7 @@ public class Clients {
 			return trouve;
 		}
 		
-		// Rechercher = booléen  |   Trouver = type de l'objet ("client" ici)
+		// Rechercher = boolï¿½en  |   Trouver = type de l'objet ("client" ici)
 		/*  --------  Rechercher si un client existe ou pas en fonction du nom  --------  */
 
 		static public boolean existeClientNom(String nom){
@@ -87,9 +90,9 @@ public class Clients {
 				if (!Clients.existeClientNom(nom)){
 					c = new Client(nom);
 					Clients.ajouterClient(c);
-					System.out.println("Le client a été créé");
+					System.out.println("Le client a ï¿½tï¿½ crï¿½ï¿½");
 				}else{
-					System.out.println("Ce client existe déjà!");
+					System.out.println("Ce client existe dï¿½jï¿½!");
 				}
 		}
 		
@@ -123,7 +126,7 @@ public class Clients {
 			return cli;
 		}
 		
-		/*  ---------------  Trouver un client en fonction du prénom  ---------------  */
+		/*  ---------------  Trouver un client en fonction du prï¿½nom  ---------------  */
 
 		static public Client trouverClientPrenom(String r){
 			int i = 0;
@@ -155,7 +158,7 @@ public class Clients {
 			return cli;
 		}
 		
-		/*  ---------------  Trouver un client en fonction du téléphone  ---------------  */
+		/*  ---------------  Trouver un client en fonction du tï¿½lï¿½phone  ---------------  */
 
 		static public Client trouverClientTel(String r){
 			int i = 0;
@@ -171,7 +174,7 @@ public class Clients {
 			return cli;
 		}
 		
-		/*  ---------------  Trouver un client en fonction de la civilité  ---------------  */
+		/*  ---------------  Trouver un client en fonction de la civilitï¿½  ---------------  */
 
 		static public Client trouverClientCivilite(String r){
 			int i = 0;
@@ -202,5 +205,48 @@ public class Clients {
 			}
 			return cli;
 		}
+		
+/* ------------------------------------------ I   H   M ----------------------------------------------------------- */
+		
+		   public int getRowCount() {
+		       return mesClients.size();
+		   }
+
+		   public int getColumnCount() {
+		       return entetes.length;
+		   }
+
+		   public String getColumnName(int columnIndex) {
+		       return entetes[columnIndex];
+		   }
+
+		   public Object getValueAt(int rowIndex, int columnIndex) {
+		       switch(columnIndex){
+		           case 0:
+		               return mesClients.get(rowIndex).getNom();
+		           case 1:
+		               return mesClients.get(rowIndex).getPrenom();
+		           case 2:
+		               return mesClients.get(rowIndex).getAdresse();
+		           case 3:
+		               return mesClients.get(rowIndex).getTel();
+		           case 4:
+		               return mesClients.get(rowIndex).getCivilite();
+		           default:
+		               return null; //Ne devrait jamais arriver
+		       }
+		   }
+		   
+		   public void addClient(Client cli) {
+			   mesClients.add(cli);
+
+		       fireTableRowsInserted(mesClients.size() -1, mesClients.size() -1);
+		   }
+
+		   public void removeClient(int rowIndex) {
+			   mesClients.remove(rowIndex);
+
+		       fireTableRowsDeleted(rowIndex, rowIndex);
+		   }
 		
 }
