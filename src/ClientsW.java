@@ -128,9 +128,9 @@ public class ClientsW extends JFrame {
 		line2 = new JPanel();
 		line3 = new JPanel();
 
-		searchtitle = new JLabel("Rechercher un article : ");
+		searchtitle = new JLabel("Rechercher un client : ");
 		tfsearch = new JTextField("Entrez un nom ou une référence");
-		add = new JButton("Créer un article...");
+		add = new JButton("Nouveau client...");
 		remove = new JButton("Supprimer...");
 		modify = new JButton("Modifer...");
 		modify.setEnabled(false);
@@ -140,6 +140,7 @@ public class ClientsW extends JFrame {
 
 		// Première ligne de "center"
 		line1.add(add);
+		add.addActionListener(new NewClient());
 		line1.add(modify);
 		line1.add(remove);
 
@@ -168,7 +169,7 @@ public class ClientsW extends JFrame {
 	//JDialog
 	
 	public void nouveauClient() {
-		newclient = new JDialog(Logiciel.getFen7(), "StockFlow - Nouvel Article");
+		newclient = new JDialog(Logiciel.getFen7(), "StockFlow - Nouveau client");
 		newclient.setSize(450, 200);
 		newclient.setLocationRelativeTo(null);
 		newclient.setContentPane(central = new JPanel());
@@ -223,12 +224,14 @@ public class ClientsW extends JFrame {
 		newclient.add(annuler);
 		newclient.setVisible(true);
 	}
-	// Nouvel article
+	
+	// Nouveau client
 		public class NewClient implements ActionListener {
 			public void actionPerformed(ActionEvent i) {
 				nouveauClient();
 		}
-		}
+	}
+	
 	public class OpenParametres implements ActionListener {
 		public void actionPerformed(ActionEvent ei) {
 			Logiciel.Show(Logiciel.getFen5());
