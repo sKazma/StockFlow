@@ -13,12 +13,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 public class StockW extends JFrame {
 	/**
@@ -38,11 +38,11 @@ public class StockW extends JFrame {
 	private JTextField tfsearch;
 	private JTable listeArticles;
 	private String[] entete = { "Référence", "Désignation", "Quantité en stock", "Prix d'achat", "Prix de vente"};
-	private DefaultTableModel tableModel = new DefaultTableModel(entete,0);		
-	
-	//ajouter un artlce frame
-	//private JT;
-	
+	private String[] [] donnees = {{"00001", "Playstation", "3", "30", "40"},
+			{"00001", "Playstation", "3", "30", "40"},
+			{"00001", "Playstation", "3", "30", "40"},
+			{"00001", "Playstation", "3", "30", "40"},
+								};
 	// constructeur
 
 	public StockW(String t) {
@@ -55,12 +55,6 @@ public class StockW extends JFrame {
 	}
 
 	public void createWindow() {
-		// creation du tableau d'article
-		
-		for(int i = 0 ; i < Stock.mesArticle.size();i++){
-			Object[] donnees={Stock.mesArticle.get(i).getReference(), Stock.mesArticle.get(i).getNom(), Stock.mesArticle.get(i).getQuantite(), Stock.mesArticle.get(i).getPrixA(), Stock.mesArticle.get(i).getPrixV()};
-			tableModel.addRow(donnees);
-		}
 
 		// Contener principal
 		main = new JPanel();
@@ -133,7 +127,7 @@ public class StockW extends JFrame {
 		modify.setEnabled(false);
 		remove.setEnabled(false);
 		search = new JButton ("Rechercher");
-		listeArticles = new JTable(this.tableModel);
+		listeArticles = new JTable(donnees, entete);
 		
 		//Première ligne de "center"
 		line1.add(add);
