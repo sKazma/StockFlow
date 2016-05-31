@@ -35,6 +35,9 @@ public class Article implements Serializable {
 	public int getReference() {
 		return maReference;
 	}
+	public static int getRef() {
+		return ref;
+	}
 
 	public void setReference(int reference) {
 		this.maReference = reference;
