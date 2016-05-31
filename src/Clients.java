@@ -1,254 +1,206 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Clients {
-
-	// ------------------ VARIABLE ----------------- //
-
+	
+	// ------------------ VARIABLE ----------------- // 
+	
 	static ArrayList<Client> mesClients = new ArrayList<Client>();
-
-	/*
-	 * ----------------------- AJOUTER (prï¿½alablement) UN CLIENT ---------------
-	 */
-
-	static public void ajoutClient(Client c) {
-		if (c != null) {
-			Clients.mesClients.add(c);
+	
+	
+		/*  -----------------------  AJOUTER (préalablement) UN CLIENT  ---------------  */
+		
+		static public void ajouterClient(Client c){
+			if (c!=null){
+				if (!existeClient(c)){
+					Clients.mesClients.add(c);
+				}
+			}
+			
 		}
-	}
-
-	/*
-	 * ----------------------- ENLEVER (prï¿½alablement) UN CLIENT
-	 * ----------------
-	 */
-
-	static public void enleveClient(Client c) {
-		if (c != null) {
-			Clients.mesClients.remove(c);
+		
+		/* -------------------------  SUPPRIMER UN CLIENT  ----------------------------------- */
+		
+		 static void supprimerClient() throws IOException {
+				System.out.println("Entrez le nom du client");
+				
+				int i=0;
+				boolean trouve = false;
+				String cli = Saisir.chaine();
+				Client cl;
+					while (i<Clients.mesClients.size() && !trouve){
+						if(cli.equals(Clients.mesClients.get(i).getNom())){
+							trouve=true;
+							cl=Clients.mesClients.get(i);
+							Clients.mesClients.remove(cl);
+							System.out.println("le client a bien été effacé !");
+						}	
+						i++;
+					}
+					if (!trouve){
+						System.out.println("Ce client n'existe pas");
+					}
+			
 		}
-	}
+		
+		
+		/*  ------  Algo de recherche pour remplacer "mesClients.contains(c)"  --------  */
 
-	/*
-	 * ------ Algo de recherche pour remplacer "mesClients.contains(a)" --------
-	 */
+		static public boolean existeClient(Client c){
+			int i = 0;
+			boolean trouve = false;
+			if (c != null){
+				while (i<mesClients.size() && !trouve){
+					if(c.getNom().equals(mesClients.get(i).getNom())){
+						trouve=true;
+					}
+					i++;
+				}
+			}
+			return trouve;
+		}
+		
+		// Rechercher = booléen  |   Trouver = type de l'objet ("client" ici)
+		/*  --------  Rechercher si un client existe ou pas en fonction du nom  --------  */
 
-	static public boolean existeClient(Client c) {
-		int i = 0;
-		boolean trouve = false;
-		if (c != null) {
-			while (i < mesClients.size() && !trouve) {
-				if (c.getNom().equals(mesClients.get(i).getNom())) {
-					trouve = true;
+		static public boolean existeClientNom(String nom){
+			int i = 0;
+			boolean trouve = false;
+			while (i<mesClients.size() && !trouve){
+				if(nom.equals(mesClients.get(i).getNom())){
+					trouve=true;
 				}
 				i++;
 			}
+			return trouve;
 		}
-		return trouve;
-	}
+		
 
-	// Rechercher = boolï¿½en | Trouver = type de l'objet ("client" ici)
-	/*
-	 * -------- Rechercher si un client existe ou pas en fonction du nom
-	 * --------
-	 */
-
-	static public boolean existeClientNom(String nom) {
-		int i = 0;
-		boolean trouve = false;
-		while (i < mesClients.size() && !trouve) {
-			if (nom.equals(mesClients.get(i).getNom())) {
-				trouve = true;
-			}
-			i++;
+		
+		
+		/*  ----------------------- CREER UN CLIENT ---------------------------------------  */
+		
+		static public void creerUnClient() throws IOException{
+			Client c;
+			System.out.println("Entrez le nom du client : ");
+			String nom = Saisir.chaine();
+				if (!Clients.existeClientNom(nom)){
+					c = new Client(nom);
+					Clients.ajouterClient(c);
+					System.out.println("Le client a été créé");
+				}else{
+					System.out.println("Ce client existe déjà!");
+				}
 		}
-		return trouve;
-	}
+		
+		
 
-	/*
-	 * ------------------------ AJOUTER UN CLIENT
-	 * ----------------------------------
-	 */
-
-	static public void ajouterClient(Client c) {
-		if (!existeClient(c)) {
-			ajoutClient(c);
-		}
-	}
-
-	/*
-	 * ----------------------- CREER UN CLIENT
-	 * ---------------------------------------
-	 */
-	// TODO A revoir ca dÃ©pendance avec la class Saisir
-
-	// static public void creerUnClient() throws IOException{
-	// Client c;
-	// System.out.println("Entrez le nom du client");
-	// String nom = Saisir.chaine();
-	// if (!Clients.existeClientNom(nom)){
-	// c = new Client(nom);
-	// Clients.ajouterClient(c);
-	// System.out.println("Le client a ï¿½tï¿½ crï¿½ï¿½");
-	// }else{
-	// System.out.println("Ce client existe dï¿½jï¿½!");
-	// }
-	// }
-	//
-
-	/*
-	 * ------------------------ ENLEVER CLIENT AU TABLEAU
-	 * ---------------------------
-	 */
-
-	static public void enleverClient(Client c) {
-		if (c != null) {
-			if (existeClient(c)) {
-				enleveClient(c);
-			} else {
-				System.out
-						.println("Il n'existe pas de client possï¿½dant un tel nom affreusement horrible !! beeuuuhh !!");
+		
+		
+		/* -----------------------  LISTER CLIENTS DU TABLEAU ---------------------------  */
+		
+		static void listerClients(){
+			for(int i=0;i<mesClients.size();i++){
+				System.out.println(mesClients.get(i).toString());
 			}
 		}
-	}
+		
+		
+		
+		/*  ---------------  Trouver un client en fonction du nom  ---------------  */
 
-	/*
-	 * ----------------------- LISTER CLIENTS DU TABLEAU
-	 * ---------------------------
-	 */
-
-	static void listerClients() {
-		for (int i = 0; i < mesClients.size(); i++) {
-			System.out.println(mesClients.get(i).toString());
-		}
-	}
-
-	/*
-	 * ---------------------- RECHERCHER CLIENT DANS LE TABLEAU
-	 * ---------------------
-	 */
-
-	static Client rechercheClient(String c) {
-		int i = 0;
-		boolean trouve = false;
-		Client cli = null;
-		while (i < mesClients.size() && trouve) {
-			if (c.equals(mesClients.get(i).getNom())) {
-				trouve = true;
-				cli = mesClients.get(i);
+		static public Client trouverClientNom(String r){
+			int i = 0;
+			boolean trouve = false;
+			Client cli = null;
+			while (i<mesClients.size() && !trouve){
+				if(r==mesClients.get(i).getNom()){
+					trouve=true;
+					cli=mesClients.get(i);
+				}
+				i++;
 			}
-			i++;
+			return cli;
 		}
-		return cli;
+		
+		/*  ---------------  Trouver un client en fonction du prénom  ---------------  */
 
-	}
-
-	/* --------------- Trouver un client en fonction du nom --------------- */
-
-	static public Client trouverClientNom(String r) {
-		int i = 0;
-		boolean trouve = false;
-		Client cli = null;
-		while (i < mesClients.size() && !trouve) {
-			if (r == mesClients.get(i).getNom()) {
-				trouve = true;
-				cli = mesClients.get(i);
+		static public Client trouverClientPrenom(String r){
+			int i = 0;
+			boolean trouve = false;
+			Client cli = null;
+			while (i<mesClients.size() && !trouve){
+				if(r==mesClients.get(i).getPrenom()){
+					trouve=true;
+					cli=mesClients.get(i);
+				}
+				i++;
 			}
-			i++;
+			return cli;
 		}
-		return cli;
-	}
+		
+		/*  ---------------  Trouver un client en fonction de l'adresse  ---------------  */
 
-	/*
-	 * --------------- Trouver un client en fonction du prï¿½nom ---------------
-	 */
-
-	static public Client trouverClientPrenom(String r) {
-		int i = 0;
-		boolean trouve = false;
-		Client cli = null;
-		while (i < mesClients.size() && !trouve) {
-			if (r == mesClients.get(i).getPrenom()) {
-				trouve = true;
-				cli = mesClients.get(i);
+		static public Client trouverClientAdresse(String r){
+			int i = 0;
+			boolean trouve = false;
+			Client cli = null;
+			while (i<mesClients.size() && !trouve){
+				if(r==mesClients.get(i).getAdresse()){
+					trouve=true;
+					cli=mesClients.get(i);
+				}
+				i++;
 			}
-			i++;
+			return cli;
 		}
-		return cli;
-	}
+		
+		/*  ---------------  Trouver un client en fonction du téléphone  ---------------  */
 
-	/*
-	 * --------------- Trouver un client en fonction de l'adresse
-	 * ---------------
-	 */
-
-	static public Client trouverClientAdresse(String r) {
-		int i = 0;
-		boolean trouve = false;
-		Client cli = null;
-		while (i < mesClients.size() && !trouve) {
-			if (r == mesClients.get(i).getAdresse()) {
-				trouve = true;
-				cli = mesClients.get(i);
+		static public Client trouverClientTel(String r){
+			int i = 0;
+			boolean trouve = false;
+			Client cli = null;
+			while (i<mesClients.size() && !trouve){
+				if(r==mesClients.get(i).getTel()){
+					trouve=true;
+					cli=mesClients.get(i);
+				}
+				i++;
 			}
-			i++;
+			return cli;
 		}
-		return cli;
-	}
+		
+		/*  ---------------  Trouver un client en fonction de la civilité  ---------------  */
 
-	/*
-	 * --------------- Trouver un client en fonction du tï¿½lï¿½phone
-	 * ---------------
-	 */
-
-	static public Client trouverClientTel(String r) {
-		int i = 0;
-		boolean trouve = false;
-		Client cli = null;
-		while (i < mesClients.size() && !trouve) {
-			if (r == mesClients.get(i).getTel()) {
-				trouve = true;
-				cli = mesClients.get(i);
+		static public Client trouverClientCivilite(String r){
+			int i = 0;
+			boolean trouve = false;
+			Client cli = null;
+			while (i<mesClients.size() && !trouve){
+				if(r==mesClients.get(i).getCivilite()){
+					trouve=true;
+					cli=mesClients.get(i);
+				}
+				i++;
 			}
-			i++;
+			return cli;
 		}
-		return cli;
-	}
+		
+		/*  ---------------  Trouver un client en fonction de la reference  ---------------  */
 
-	/*
-	 * --------------- Trouver un client en fonction de la civilitï¿½
-	 * ---------------
-	 */
-
-	static public Client trouverClientCivilite(String r) {
-		int i = 0;
-		boolean trouve = false;
-		Client cli = null;
-		while (i < mesClients.size() && !trouve) {
-			if (r == mesClients.get(i).getCivilite()) {
-				trouve = true;
-				cli = mesClients.get(i);
+		static public Client trouverClientRef(int r){
+			int i = 0;
+			boolean trouve = false;
+			Client cli = null;
+			while (i<mesClients.size() && !trouve){
+				if(r==mesClients.get(i).getMaReference()){
+					trouve=true;
+					cli=mesClients.get(i);
+				}
+				i++;
 			}
-			i++;
+			return cli;
 		}
-		return cli;
-	}
-
-	/*
-	 * --------------- Trouver un client en fonction de la reference
-	 * ---------------
-	 */
-
-	static public Client trouverClientRef(int r) {
-		int i = 0;
-		boolean trouve = false;
-		Client cli = null;
-		while (i < mesClients.size() && !trouve) {
-			if (r == mesClients.get(i).getMaReference()) {
-				trouve = true;
-				cli = mesClients.get(i);
-			}
-			i++;
-		}
-		return cli;
-	}
-
+		
 }
