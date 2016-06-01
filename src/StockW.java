@@ -150,6 +150,7 @@ public class StockW extends JFrame {
 		remove = new JButton ("Supprimer...");
 		modify = new JButton ("Modifer...");
 		modify.setEnabled(false);
+		modify.addActionListener(new modifierArticle());
 		remove.setEnabled(false);
 		search = new JButton ("Rechercher");
 		listeArticles.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -259,7 +260,7 @@ public class StockW extends JFrame {
 	}
 	//Nouvel article
 	
-	public void nouveauClient() {
+	public void nouveauArticle() {
 		nvArticle = new JDialog(Logiciel.getFen7(), "StockFlow - Nouvel Article");
 		nvArticle.setSize(450, 200);
 		nvArticle.setLocationRelativeTo(null);
@@ -313,7 +314,7 @@ public class StockW extends JFrame {
 	}
 	public class NewArticle implements ActionListener {
 		public void actionPerformed(ActionEvent i) {
-			nouveauClient();
+			nouveauArticle();
 	}
 }
 	
@@ -432,9 +433,37 @@ public class StockW extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			nouveauArticle();
+			tfreference.setText(Integer.toString(Stock.trouverArticleNom((String) listeArticles.getValueAt(listeArticles.getSelectedRow(),1)).getReference()));
+			tfnom.setText((String) listeArticles.getValueAt(listeArticles.getSelectedRow(),1));
+			tfquantite.setText(Integer.toString(Stock.trouverArticleNom((String) listeArticles.getValueAt(listeArticles.getSelectedRow(),1)).getQuantite()));
+			tfprixA.setText(Float.toString(Stock.trouverArticleNom((String) listeArticles.getValueAt(listeArticles.getSelectedRow(),1)).getPrixA()));
+			tfprixV.setText(Float.toString(Stock.trouverArticleNom((String) listeArticles.getValueAt(listeArticles.getSelectedRow(),1)).getPrixV()));
+			valider.addActionListener(new EnregistrerModifArticle());
 		}
-		
+	}
+	public class EnregistrerModifArticle implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			try {					
+				Stock.trouverArticleRef((int) listeArticles.getValueAt(listeArticles.getSelectedRow(),0)).setNom(tfnom.getText());
+				Stock.trouverArticleRef((int) listeArticles.getValueAt(listeArticles.getSelectedRow(),0)).setQuantite(Integer.parseInt(tfquantite.getText()));
+				Stock.trouverArticleRef((int) listeArticles.getValueAt(listeArticles.getSelectedRow(),0)).setPrixA(Float.parseFloat(tfprixA.getText()));
+				Stock.trouverArticleRef((int) listeArticles.getValueAt(listeArticles.getSelectedRow(),0)).setPrixV(Float.parseFloat(tfprixV.getText()));
+				ajouerLesArticle();
+				erreur.setText("L'Article a été Modifié");
+			    try{
+			        Thread.sleep(2000);
+			        }catch(InterruptedException e5){}
+				nvArticle.dispose();
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				System.out.println("Vous devez entrez des nombre des les case quantite, prix d'achat et de vente ou le fichier n'existe pas");
+				erreur.setText("Veuillez entrez des chiffre");
+			}	
+		} 	
 	}
 }
 

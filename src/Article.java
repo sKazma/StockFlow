@@ -6,9 +6,8 @@ public class Article implements Serializable {
 
 	private static final long serialVersionUID = 1L;//-
 	private String nom;
-	private int maReference;
+	private int refArticle;
 	static private int ref;
-	private String type;
 	private int quantite;
 	private float prixV, prixA;
 
@@ -17,7 +16,7 @@ public class Article implements Serializable {
 		this.nom = nom;
 		ref = Stock.mesArticle.size();
 		Article.ref++;
-		this.maReference = ref;
+		this.refArticle = ref;
 		this.quantite = quantite;
 		this.prixA = prixA;
 		this.prixV = prixV;
@@ -33,14 +32,11 @@ public class Article implements Serializable {
 	}
 
 	public int getReference() {
-		return maReference;
-	}
-	public static int getRef() {
-		return ref;
+		return refArticle;
 	}
 
 	public void setReference(int reference) {
-		this.maReference = reference;
+		this.refArticle = reference;
 	}
 
 	public int getQuantite() {
@@ -55,7 +51,7 @@ public class Article implements Serializable {
 		return prixA;
 	}
 
-	public void setPrix(float prixA) {
+	public void setPrixA(float prixA) {
 		this.prixA = prixA;
 	}
 
@@ -71,7 +67,7 @@ public class Article implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Article [nom=" + nom + ", maReference=" + maReference + ", type=" + type + ", quantite=" + quantite
+		return "Article [nom=" + nom + ", refArticle=" + refArticle + ", quantite=" + quantite
 				+ ", prixA=" + prixA + ", prixV=" + prixV + "]";
 	}
 
