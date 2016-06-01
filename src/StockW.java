@@ -80,7 +80,7 @@ public class StockW extends JFrame {
 		// creation du tableau d'article
 		
 		this.ajouerLesArticle();
-
+		
 		// Contener principal
 		main = new JPanel();
 		this.setContentPane(main);
@@ -242,7 +242,7 @@ public class StockW extends JFrame {
 	
 	public void confirmerAnnuler(String message){
 		this.confirmer = new JDialog(Logiciel.getFen7(), "Attention");
-		this.confirmer.setSize(400,130);
+		this.confirmer.setSize(260,130);
 		this.confirmer.setLocationRelativeTo(null);
 		this.confirmer.setContentPane(central2 = new JPanel());
 		
@@ -375,8 +375,9 @@ public class StockW extends JFrame {
 			} catch (NumberFormatException | IOException e1) {
 				// TODO Auto-generated catch block
 				System.out.println("Vous devez entrez des nombre des les case quantite, prix d'achat et de vente ou le fichier n'existe pas");
-				erreur.setText("Veuillez entrez des chiffre");
-			}	
+				erreur.setText("Veuillez entrez des chiffres");
+			}
+			Logiciel.getFen7().setEnabled(true);
 		} 	
 	}
 	
@@ -388,8 +389,9 @@ public class StockW extends JFrame {
 			if (tfnom.getText().isEmpty() && tfquantite.getText().isEmpty() && tfprixA.getText().isEmpty() && tfprixV.getText().isEmpty()){
 				nvArticle.dispose();
 			}else{
-				confirmerAnnuler("Etes Vous sur de vouloir annuler toutes les données seront perdu");
+				confirmerAnnuler("Etes-vous sur de vouloir annuler ?");
 			}
+			Logiciel.getFen7().setEnabled(true);
 		}
 		
 		
@@ -401,6 +403,7 @@ public class StockW extends JFrame {
 			// TODO Auto-generated method stub
 			confirmer.dispose();
 			nvArticle.dispose();
+			Logiciel.getFen7().setEnabled(true);
 		}
 		
 	}
@@ -410,6 +413,7 @@ public class StockW extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			confirmer.dispose();
+			Logiciel.getFen7().setEnabled(true);
 		}
 		
 	}
@@ -440,6 +444,7 @@ public class StockW extends JFrame {
 			tfprixA.setText(Float.toString(Stock.trouverArticleNom((String) listeArticles.getValueAt(listeArticles.getSelectedRow(),1)).getPrixA()));
 			tfprixV.setText(Float.toString(Stock.trouverArticleNom((String) listeArticles.getValueAt(listeArticles.getSelectedRow(),1)).getPrixV()));
 			valider.addActionListener(new EnregistrerModifArticle());
+			Logiciel.getFen7().setEnabled(false);
 		}
 	}
 	public class EnregistrerModifArticle implements ActionListener{
