@@ -7,8 +7,10 @@ public class Ventes {
 		if(v!=null){
 			ventes.add(v);
 		}
-		
 	}
+	
+	
+	
 	static public void ajouterVente(Vente1 v){
 		ajoutVente(v);
 	}
